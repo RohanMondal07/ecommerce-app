@@ -30,7 +30,7 @@ To get started with the Ecommerce Application, follow the steps below.
 
    \```bash
    git clone https://github.com/RohanMondal07/ecommerce-app
-   \```
+   
 
 2. Change into the project directory:
 
