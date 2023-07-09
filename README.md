@@ -61,7 +61,7 @@ To get started with the Ecommerce Application, follow the steps below.
 5. Install the required packages:
 
    \```bash
-     pip install -r requirements.txt
+     pip install fastapi uvicorn pymongo
    \```
 
 ### Running the Application
