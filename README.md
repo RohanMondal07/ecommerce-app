@@ -28,49 +28,46 @@ To get started with the Ecommerce Application, follow the steps below.
 
 1. Clone the repository:
 
-   \```bash
+   
    git clone https://github.com/RohanMondal07/ecommerce-app
    
 
 2. Change into the project directory:
 
-   \```bash
+   
        cd ecommerce-app
-   \```
 
 3. Set up a virtual environment:
 
-   \```bash
+
        python -m venv venv
-   \```
 
 4. Activate the virtual environment:
 
    - On Windows:
 
-     \```bash
+     
        venv\Scripts\activate
-     \```
+
 
    - On macOS/Linux:
 
-     \```bash
+     
        source venv/bin/activate
-     \```
+     
 
 5. Install the required packages:
 
-   \```bash
+   
      pip install fastapi uvicorn pymongo
-   \```
+   
 
 ### Running the Application
 
 To run the Ecommerce Application, execute the following command:
 
-\```bash
   uvicorn main:app --reload
-\```
+
 
 The application will be accessible at http://localhost:8000.
 
