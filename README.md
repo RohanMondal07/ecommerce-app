@@ -29,13 +29,13 @@ To get started with the Ecommerce Application, follow the steps below.
 1. Clone the repository:
 
    \```bash
-   git clone https://github.com/your-username/ecommerce-application.git
+   git clone https://github.com/RohanMondal0/ecommerce-app
    \```
 
 2. Change into the project directory:
 
    \```bash
-   cd ecommerce-application
+   cd ecommerce-app
    \```
 
 3. Set up a virtual environment:
