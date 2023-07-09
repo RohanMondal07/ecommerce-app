@@ -15,7 +15,6 @@ Welcome to the documentation for the Ecommerce Application. This documentation p
   - [Fetch Single Order](#fetch-single-order)
   - [Update Product](#update-product)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 
@@ -130,9 +129,7 @@ Refer to the specific API endpoints for more details on the request/response str
 
 Contributions to the Ecommerce Application are welcome! If you have any suggestions, enhancements, or bug fixes, please submit a pull request.
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
