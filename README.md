@@ -35,13 +35,13 @@ To get started with the Ecommerce Application, follow the steps below.
 2. Change into the project directory:
 
    \```bash
-   cd ecommerce-app
+       cd ecommerce-app
    \```
 
 3. Set up a virtual environment:
 
    \```bash
-   python -m venv venv
+       python -m venv venv
    \```
 
 4. Activate the virtual environment:
@@ -49,19 +49,19 @@ To get started with the Ecommerce Application, follow the steps below.
    - On Windows:
 
      \```bash
-     venv\Scripts\activate
+       venv\Scripts\activate
      \```
 
    - On macOS/Linux:
 
      \```bash
-     source venv/bin/activate
+       source venv/bin/activate
      \```
 
 5. Install the required packages:
 
    \```bash
-   pip install -r requirements.txt
+     pip install -r requirements.txt
    \```
 
 ### Running the Application
@@ -69,7 +69,7 @@ To get started with the Ecommerce Application, follow the steps below.
 To run the Ecommerce Application, execute the following command:
 
 \```bash
-uvicorn main:app --reload
+  uvicorn main:app --reload
 \```
 
 The application will be accessible at http://localhost:8000.
