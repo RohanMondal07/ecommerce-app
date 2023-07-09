@@ -44,29 +44,25 @@ To get started with the Ecommerce Application, follow the steps below.
 
 4. Activate the virtual environment:
 
-   - On Windows:
-
-     
        venv\Scripts\activate
-
-
-   - On macOS/Linux:
-
      
-       source venv/bin/activate
-     
-
 5. Install the required packages:
-
-   
+```bash
      pip install fastapi uvicorn pymongo
+```
+6.Access the API at 
+
+```bash
+  http://127.0.0.1:8000/docs
+```
    
 
 ### Running the Application
 
 To run the Ecommerce Application, execute the following command:
-
+```bash
   uvicorn main:app --reload
+```
 
 
 The application will be accessible at http://localhost:8000.
@@ -121,16 +117,27 @@ The Ecommerce Application provides the following API endpoints:
 - **Response:** Returns the updated product object.
 
 Refer to the specific API endpoints for more details on the request/response structures and parameters.
+##### Scheme of Order
+```
+{
+  "timestamp": "2023-07-09T00:08:37.563897",
+  "items": [
+    {
+      "product_id": "string",
+      "bought_quantity": 0
+    }
+  ],
+  "user_address": {
+    "city": "string",
+    "country": "string",
+    "zip_code": "string"
+  }
+}
+```
 
-## Contributing
 
-Contributions to the Ecommerce Application are welcome! If you have any suggestions, enhancements, or bug fixes, please submit a pull request.
+## Authors
 
-
-
----
-
-Feel free to customize the documentation according to your project's specific details and requirements.
-EOF
+- [@RohanMondal07](https://www.github.com/RohanMondal07)
 
 
