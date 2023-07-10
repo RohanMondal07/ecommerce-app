@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 from motor import motor_asyncio
-from pydantic import BaseModel
+from models import Product, Order
 
 app = FastAPI()
 
@@ -11,16 +11,6 @@ db = client["ecommerce"]
 products_collection = db["products"]
 orders_collection = db["orders"]
 
-# Models
-class Product(BaseModel):
-    name: str
-    price: float
-    available_quantity: int
-
-class Order(BaseModel):
-    timestamp: str
-    items: list
-    user_address: dict
 
 # API endpoints
 @app.get("/products")
