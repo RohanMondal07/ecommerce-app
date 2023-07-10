@@ -45,7 +45,7 @@ To get started with the Ecommerce Application, follow the steps below.
      ```  
 5. Install the required packages:
     ```bash
-    pip install fastapi uvicorn pymongo pydanti motor
+    pip install fastapi uvicorn pymongo pydantic motor
       ```
 6. Access the API at:
     ```bash
