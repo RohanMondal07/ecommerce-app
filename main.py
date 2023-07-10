@@ -1,58 +1,60 @@
-from fastapi import FastAPI, HTTPException
-from typing import List
-from models import Product, Order
-from pymongo import MongoClient
+import uvicorn
+from fastapi import FastAPI
+from motor import motor_asyncio
+from pydantic import BaseModel
 
 app = FastAPI()
 
-# In-memory storage for products and orders
-products = []
-orders = []
-
-
-# Connect to MongoDB
-client = MongoClient("mongodb+srv://ecom123:pass1234@ecommerce.tdtbegi.mongodb.net/")
+# MongoDB connection
+client = motor_asyncio.AsyncIOMotorClient("mongodb+srv://ecom123:pass1234@ecommerce.tdtbegi.mongodb.net/")
 db = client["ecommerce"]
 products_collection = db["products"]
 orders_collection = db["orders"]
 
+# Models
+class Product(BaseModel):
+    name: str
+    price: float
+    available_quantity: int
 
+class Order(BaseModel):
+    timestamp: str
+    items: list
+    user_address: dict
+
+# API endpoints
 @app.get("/products")
-def get_products():
+async def list_products():
+    products = await products_collection.find().to_list(20)
     return products
 
 @app.post("/orders")
-def create_order(order: Order):
-    # Verify product availability and calculate total amount
-    total_amount = 0
-    for item in order.items:
-        product = next((p for p in products if p.id == item.productId), None)
-        if not product or item.boughtQuantity > product.quantity:
-            raise HTTPException(status_code=400, detail="Insufficient quantity for product: {}".format(item.productId))
-
-        total_amount += product.price * item.boughtQuantity
-
-    # Save the order
-    order.totalAmount = total_amount
-    orders.append(order)
-    return order
+async def create_order(order: Order):
+    order_id = await orders_collection.insert_one(order.dict()).inserted_id
+    return {"order_id": str(order_id)}
 
 @app.get("/orders")
-def get_orders(limit: int = 10, offset: int = 0):
-    return orders[offset:offset + limit]
+async def fetch_orders(limit: int = 10, offset: int = 0):
+    orders = await orders_collection.find().skip(offset).limit(limit).to_list(limit)
+    return orders
 
 @app.get("/orders/{order_id}")
-def get_order(order_id: int):
-    order = next((o for o in orders if o.id == order_id), None)
-    if not order:
-        raise HTTPException(status_code=404, detail="Order not found")
-    return order
+async def fetch_order(order_id: str):
+    order = await orders_collection.find_one({"_id": order_id})
+    if order:
+        return order
+    return {"message": "Order not found"}
 
 @app.put("/products/{product_id}")
-def update_product(product_id: int, quantity: int):
-    product = next((p for p in products if p.id == product_id), None)
-    if not product:
-        raise HTTPException(status_code=404, detail="Product not found")
+async def update_product(product_id: str, quantity: int):
+    result = await products_collection.update_one(
+        {"_id": product_id},
+        {"$set": {"available_quantity": quantity}}
+    )
+    if result.modified_count:
+        return {"message": "Product updated successfully"}
+    return {"message": "Product not found"}
 
-    product.quantity = quantity
-    return product
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="localhost", port=8000)
